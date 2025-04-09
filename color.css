@@ -1,132 +1,104 @@
-:root {
-    --bg: #0f1624;
-    --card-bg: #1e2b3a;
-    --text: #fff;
-    --text-muted: #b0b3b8;
-    --accent: #f04d4d;
-    --toggle-on: #f04d4d;
-    --toggle-off: #555;
-    --radius: 12px;
-  }
-  
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-  }
-  
-  .topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background: #111a2c;
-    font-size: 18px;
-  }
-  
-  .logo {
-    font-weight: bold;
-  }
-  
-  .settings-icon {
-    cursor: pointer;
-  }
-  
-  .container {
-    padding: 20px;
-  }
-  
-  h2 {
-    margin-bottom: 10px;
-  }
-  
-  .filters {
-    margin-bottom: 20px;
-  }
-  
-  .filter-btn {
-    background: #2c394b;
-    color: var(--text);
-    border: none;
-    padding: 8px 16px;
-    margin-right: 10px;
-    border-radius: var(--radius);
-    cursor: pointer;
-  }
-  
-  .filter-btn.active {
-    background: var(--accent);
-  }
-  
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-  }
-  
-  .card {
-    background: var(--card-bg);
-    padding: 20px;
-    border-radius: var(--radius);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: 0.3s;
-    position: relative;
-  }
-  
-  .card h3 {
-    margin: 0 0 5px 0;
-  }
-  
-  .card p {
-    margin: 0 0 10px;
-    color: var(--text-muted);
-    font-size: 14px;
-  }
-  
-  .remove-btn {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid #555;
-    padding: 6px 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-bottom: 10px;
-    transition: 0.3s;
-  }
-  
-  .remove-btn:hover {
-    background: var(--accent);
-    border-color: var(--accent);
-  }
-  
-  .toggle-switch {
-    width: 50px;
-    height: 26px;
-    border-radius: 13px;
-    background: var(--toggle-off);
-    position: relative;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  
-  .toggle-switch.active {
-    background: var(--toggle-on);
-  }
-  
-  .toggle-circle {
-    width: 20px;
-    height: 20px;
-    background: #fff;
-    border-radius: 50%;
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    transition: transform 0.3s;
-  }
-  
-  .toggle-switch.active .toggle-circle {
-    transform: translateX(24px);
-  }
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #0f172a;
+  color: white;
+  padding: 20px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+.filters {
+  display: flex;
+  gap: 10px;
+}
+.filters button {
+  background: #1e293b;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.filters button:hover,
+.filters button.active {
+  background: #475569;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+.card {
+  background: #1e293b;
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s;
+}
+.card:hover {
+  transform: translateY(-4px);
+}
+.card h3 {
+  margin-top: 0;
+}
+.card p {
+  flex-grow: 1;
+}
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.remove-btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.remove-btn:hover {
+  background: #dc2626;
+}
+.toggle {
+  appearance: none;
+  width: 40px;
+  height: 20px;
+  background: #475569;
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+}
+.toggle:checked {
+  background: #10b981;
+}
+.toggle::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s;
+}
+.toggle:checked::before {
+  transform: translateX(20px);
+}

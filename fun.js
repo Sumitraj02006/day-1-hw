@@ -1,66 +1,61 @@
 const extensions = [
-    { name: "DevLens", description: "Inspect layouts and element boundaries.", active: true },
-    { name: "StyleSpy", description: "Analyze and copy CSS instantly.", active: true },
-    { name: "SpeedBoost", description: "Accelerate browser performance.", active: false },
-    { name: "JSONWizard", description: "Format and validate JSON.", active: true },
-    { name: "TabMaster Pro", description: "Group tabs and manage sessions.", active: true },
-    { name: "ViewportBuddy", description: "Test screen resolutions.", active: false },
-    { name: "Markup Notes", description: "Annotate web pages.", active: true },
-    { name: "GridGuides", description: "Overlay grid alignment guides.", active: false },
-    { name: "Palette Picker", description: "Extract color palettes.", active: true },
-    { name: "LinkChecker", description: "Highlight broken links.", active: false },
-    { name: "DOM Snapshot", description: "Export DOM snapshots.", active: false },
-    { name: "ConsolePlus", description: "Enhanced developer console.", active: true },
-  ];
-  
-  const container = document.getElementById("extensionGrid");
-  let currentFilter = "all";
-  
-  function renderExtensions(filter = "all") {
-    container.innerHTML = "";
-  
-    const filtered = extensions.filter(ext => {
-      if (filter === "all") return true;
-      if (filter === "active") return ext.active;
-      if (filter === "inactive") return !ext.active;
-    });
-  
-    filtered.forEach((ext, index) => {
-      const card = document.createElement("div");
-      card.className = "card";
-  
-      card.innerHTML = `
-        <h3>${ext.name}</h3>
-        <p>${ext.description}</p>
+  { name: 'DevLens', desc: 'Quickly inspect page layouts and visualize element boundaries.', active: true },
+  { name: 'StyleSpy', desc: 'Instantly analyze and copy CSS from any webpage element.', active: true },
+  { name: 'SpeedBoost', desc: 'Optimizes browser resource usage to accelerate page loading.', active: false },
+  { name: 'JSONWizard', desc: 'Formats, validates, and prettifies JSON responses in-browser.', active: true },
+  { name: 'TabMaster Pro', desc: 'Organizes browser tabs into groups and sessions.', active: true },
+  { name: 'ViewportBuddy', desc: 'Simulates various screen resolutions directly within the browser.', active: false },
+  { name: 'Markup Notes', desc: 'Enables annotation and notes directly onto webpages for collaborative debugging.', active: true },
+  { name: 'GridGuides', desc: 'Overlay customizable grids and alignment guides on any webpage.', active: false },
+  { name: 'Palette Picker', desc: 'Instantly extracts color palettes from any webpage.', active: true },
+  { name: 'LinkChecker', desc: 'Scans and highlights broken links on any page.', active: false },
+  { name: 'DOM Snapshot', desc: 'Capture and export DOM structures quickly.', active: false },
+  { name: 'ConsolePlus', desc: 'Enhanced developer console with advanced filtering and logging.', active: false }
+];
+
+const grid = document.getElementById('extensionsGrid');
+const buttons = document.querySelectorAll('.filter-btn');
+
+function renderExtensions(filter = 'all') {
+  grid.innerHTML = '';
+  const filtered = extensions.filter(ext =>
+    filter === 'all' || (filter === 'active' && ext.active) || (filter === 'inactive' && !ext.active)
+  );
+  filtered.forEach((ext, index) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <h3>${ext.name}</h3>
+      <p>${ext.desc}</p>
+      <div class="actions">
         <button class="remove-btn" onclick="removeExtension(${index})">Remove</button>
-        <div class="toggle-switch ${ext.active ? 'active' : ''}" onclick="toggleExtension(${index})">
-          <div class="toggle-circle"></div>
-        </div>
-      `;
-  
-      container.appendChild(card);
-    });
-  }
-  
-  function toggleExtension(index) {
-    extensions[index].active = !extensions[index].active;
-    renderExtensions(currentFilter);
-  }
-  
-  function removeExtension(index) {
-    extensions.splice(index, 1);
-    renderExtensions(currentFilter);
-  }
-  
-  function filter(type) {
-    currentFilter = type;
-    document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
-  
-    const filterIndex = type === "all" ? 0 : type === "active" ? 1 : 2;
-    document.querySelectorAll(".filter-btn")[filterIndex].classList.add("active");
-  
-    renderExtensions(type);
-  }
-  
-  renderExtensions();
-  
+        <input type="checkbox" class="toggle" ${ext.active ? 'checked' : ''} onchange="toggleActive(${index})">
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function removeExtension(index) {
+  extensions.splice(index, 1);
+  renderExtensions(getCurrentFilter());
+}
+
+function toggleActive(index) {
+  extensions[index].active = !extensions[index].active;
+  renderExtensions(getCurrentFilter());
+}
+
+function getCurrentFilter() {
+  return document.querySelector('.filter-btn.active').dataset.filter;
+}
+
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    buttons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderExtensions(btn.dataset.filter);
+  });
+});
+
+renderExtensions();

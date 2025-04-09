@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Extensions Manager</title>
-  <link rel="stylesheet" href="color.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Extensions Dashboard</title>
+  <link rel="stylesheet" href="color.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-
-  <header class="topbar">
-    <div class="logo">🧩 Extensions</div>
-    <div class="settings-icon">⚙️</div>
-  </header>
-
-  <main class="container">
-    <h2>Extensions List</h2>
+  <div class="header">
+    <h1>Extensions List</h1>
     <div class="filters">
-      <button class="filter-btn active" onclick="filter('all')">All</button>
-      <button class="filter-btn" onclick="filter('active')">Active</button>
-      <button class="filter-btn" onclick="filter('inactive')">Inactive</button>
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="active">Active</button>
+      <button class="filter-btn" data-filter="inactive">Inactive</button>
     </div>
-
-    <div class="grid" id="extensionGrid"></div>
-  </main>
-
+  </div>
+  <div class="grid" id="extensionsGrid">
+    <!-- Extensions will be rendered here -->
+  </div>
   <script src="fun.js"></script>
+
 </body>
 </html>
