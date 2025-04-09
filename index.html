@@ -2,38 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Extensions Manager</title>
   <link rel="stylesheet" href="color.css" />
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Extensions</h1>
-      <div class="filters">
-        <button class="filter active">All</button>
-        <button class="filter">Active</button>
-        <button class="filter">Inactive</button>
-      </div>
-    </header>
-    
-    <section class="extensions-grid">
-      <!-- Sample Extension Card -->
-      <div class="extension-card active">
-        <div class="icon">📷</div>
-        <div class="details">
-          <h2>DevLens</h2>
-          <p>Quickly inspect page layouts and visualize element boundaries.</p>
-          <button class="remove-btn">Remove</button>
-        </div>
-        <label class="switch">
-          <input type="checkbox" checked />
-          <span class="slider"></span>
-        </label>
-      </div>
-      <!-- Repeat .extension-card as needed -->
-    </section>
-  </div>
+
+  <header class="topbar">
+    <div class="logo">🧩 Extensions</div>
+    <div class="settings-icon">⚙️</div>
+  </header>
+
+  <main class="container">
+    <h2>Extensions List</h2>
+    <div class="filters">
+      <button class="filter-btn active" onclick="filter('all')">All</button>
+      <button class="filter-btn" onclick="filter('active')">Active</button>
+      <button class="filter-btn" onclick="filter('inactive')">Inactive</button>
+    </div>
+
+    <div class="grid" id="extensionGrid"></div>
+  </main>
+
   <script src="fun.js"></script>
 </body>
 </html>
