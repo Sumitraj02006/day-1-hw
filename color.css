@@ -1,0 +1,103 @@
+/* styles.css */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #0f172a;
+    color: white;
+  }
+  
+  .container {
+    padding: 2rem;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .filters button {
+    background: #1e293b;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .filters .active {
+    background: #ef4444;
+  }
+  
+  .extensions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .extension-card {
+    background: #1e293b;
+    border-radius: 10px;
+    padding: 1rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .extension-card .icon {
+    font-size: 2rem;
+  }
+  
+  .extension-card .remove-btn {
+    background: #334155;
+    color: white;
+    border: none;
+    padding: 0.25rem 0.75rem;
+    border-radius: 5px;
+    margin-top: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .switch {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+  
+  .switch input {
+    display: none;
+  }
+  
+  .slider {
+    width: 40px;
+    height: 20px;
+    background: gray;
+    display: block;
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .slider::before {
+    content: "";
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    background: white;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: 0.3s;
+  }
+  
+  input:checked + .slider::before {
+    transform: translateX(20px);
+  }
+  
+  input:checked + .slider {
+    background: #10b981;
+  }
+  
